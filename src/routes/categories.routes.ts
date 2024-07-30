@@ -1,7 +1,7 @@
 // eslint-disable-next-line import-helpers/order-imports
 import { Router } from 'express';
-import CategoryRepository from '../Repositories/CategoryRepository';
-import CreateCategoryService from '../Services/CreateCategoryService';
+import CategoryRepository from '../Modules/Cars/Repositories/CategoryRepository';
+import CreateCategoryService from '../Modules/Cars/Services/CreateCategoryService';
 
 const categoriesRouter = Router();
 const categoryRepository = new CategoryRepository();
