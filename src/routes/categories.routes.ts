@@ -1,16 +1,12 @@
-// eslint-disable-next-line import-helpers/order-imports
 import { Router } from 'express';
-import CategoryRepository from '../Modules/Cars/Repositories/CategoryRepository';
+
 import { categoryController } from '../Modules/Cars/useCase/CreateCategory/index';
+import { listController } from '../Modules/Cars/useCase/ListCategory';
 
 const categoriesRouter = Router();
-const categoryRepository = new CategoryRepository();
 
 categoriesRouter.post('/', (req, res) => categoryController.handle(req, res));
 
-categoriesRouter.get('/', (req, res) => {
-  const list = categoryRepository.list();
-  res.status(200).json(list);
-});
+categoriesRouter.get('/', (req, res) => listController.handle(req, res));
 
 export { categoriesRouter };
