@@ -1,22 +1,12 @@
 // eslint-disable-next-line import-helpers/order-imports
 import { Router } from 'express';
 import CategoryRepository from '../Modules/Cars/Repositories/CategoryRepository';
-import CreateCategoryService from '../Modules/Cars/Services/CreateCategoryService';
+import { categoryController } from '../Modules/Cars/useCase/CreateCategory/index';
 
 const categoriesRouter = Router();
 const categoryRepository = new CategoryRepository();
 
-categoriesRouter.post('/', (req, res) => {
-  const { name, description } = req.body;
-
-  const createCategoryService = new CreateCategoryService(categoryRepository);
-  createCategoryService.excute({ name, description });
-
-  return res.status(201).json({
-    message: 'Dados cadastrados com sucesso',
-    data: categoryRepository,
-  });
-});
+categoriesRouter.post('/', (req, res) => categoryController.handle(req, res));
 
 categoriesRouter.get('/', (req, res) => {
   const list = categoryRepository.list();
