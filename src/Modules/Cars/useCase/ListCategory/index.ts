@@ -1,4 +1,4 @@
-import CategoryRepositoriy from '../../Repositories/CategoryRepository';
+import CategoryRepositoriy from '../../Repositories/implementations/CategoryRepository';
 import ListCategoryController from './ListCategoryController';
 import ListCategoryService from './ListCategoryService';
 

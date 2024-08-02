@@ -1,22 +1,17 @@
+/* eslint-disable function-paren-newline */
+/* eslint-disable implicit-arrow-linebreak */
 import { Router } from 'express';
 
-import SpecificationRepository from '../Modules/Cars/Repositories/SpecificationRepository';
-import { CreateSpecification } from '../Modules/Cars/Services/CreateSpecification';
+import { specificationController } from '../Modules/Cars/useCase/CreateSpecification';
 
 const specificationRoute = Router();
-const repository = new SpecificationRepository();
 
-specificationRoute.post('/', (req, res) => {
-  const { name, description } = req.body;
-  const create = new CreateSpecification(repository);
-  create.execute({ name, description });
-  res
-    .status(201)
-    .json({ message: 'Created register', data: name, description });
-});
+specificationRoute.post('/', (req, res) =>
+  specificationController.handle(req, res),
+);
 
-specificationRoute.get('/', (req, res) => {
-  res.status(200).json(repository.list());
-});
+// specificationRoute.get('/', (req, res) => {
+//   // res.status(200).json(repository.list());
+// });
 
-export default specificationRoute;
+export { specificationRoute };
