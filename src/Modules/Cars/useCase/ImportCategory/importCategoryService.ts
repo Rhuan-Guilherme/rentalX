@@ -30,6 +30,7 @@ class importCategoryService {
           this.categoryArray.push({ name, description });
         })
         .on('end', () => {
+          fs.promises.unlink(file.path);
           resolve(this.categoryArray);
         })
         .on('error', (err) => {
